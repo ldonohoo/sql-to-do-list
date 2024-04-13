@@ -8,6 +8,9 @@ const router = express.Router();
 
 /**
  * GET route for getting todos from the database
+ *     - RUN an SQL select statement to select all todos from the
+ *          todo table
+ *     - return the todos object via the response to the client 
  */
 router.get('/', (req, res) => {
     console.log('trying to get the todos!!');
@@ -29,6 +32,9 @@ router.get('/', (req, res) => {
 
 /**
  * POST route for adding a todo to the database
+ *   - pull the todo to be added from the request.body 
+ *   - run an SQL INSERT statement to insert the single todo item
+ *          into the todos table
  */
 router.post('/', (req, res) => {
     console.log('trying to get the todos!!');
@@ -54,6 +60,9 @@ router.post('/', (req, res) => {
 
 /**
  * PUT route for updating a todo item to mark it as completed
+ *  - read in the todo id from the parameter passed in on the url
+ *  - run an SQL UPDATE command to update the completed status for 
+ *      the todo item to TRUE
  */
 router.put('/:todo_id', (req, res) => {
     let todoId = req.params.todo_id;
@@ -77,6 +86,9 @@ router.put('/:todo_id', (req, res) => {
 
 /**
  * DELETE route to delete a single todo item
+ *  - read in todo id from parameter passed in on the url
+ *  - run an SQL DELETE on the todos table
+ *      WHERE the id passed in is equal to id
  */
 router.delete('/:todo_id', (req, res) => {
     let todoId = req.params.todo_id;
