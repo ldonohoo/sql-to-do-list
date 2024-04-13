@@ -7,7 +7,7 @@ let PORT = process.env.PORT || 5001;
 
 // Do not modify this!
 if (process.env.NODE_ENV == 'test') {
-  PORT = 5002;
+  PORT = 5001;
 }
 
 app.use(express.static('./server/public'));

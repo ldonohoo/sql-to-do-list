@@ -1,6 +1,6 @@
 const pg = require('pg')
 
-let databaseName = 'weekend-to-do-app'
+let databaseName = 'todo_list';
 
 if (process.env.NODE_ENV === 'test') {
   databaseName = 'prime_testing'
