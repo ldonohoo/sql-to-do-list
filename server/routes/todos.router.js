@@ -67,6 +67,10 @@ router.post('/', (req, res) => {
 router.put('/:todo_id', (req, res) => {
     let todoId = req.params.todo_id;
     console.log('updating todo #', todoId);
+    // build SQL statement: 
+    //  **need to put isComplete column name in quotes because it got defined
+    //      in the database.sql as a column with a capital letter.
+    //      Capital letters can only be passed with quotes, bah. 
     sqlText = `
         UPDATE todos
             SET "isComplete" = TRUE
