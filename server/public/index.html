@@ -13,20 +13,23 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
-  <section>
-    <h2>Add a todo item:</h2>
-    <form>
-      <input id="todo-text" 
-             data-testid="toDoTextInput" 
-             type="text"/>
-      <button onclick="addTodoItem(event)" 
-              data-testid="submitButton"></button>
-    </form>
-  </section>
-  <section>
-    <h2>Your current Todos:</h2>
-    <ul id="todo-list">
-    </ul>
-  </section>
+    <main>
+      <section>
+        <h2>Add a todo item:</h2>
+        <form>
+          <input id="todo-text" 
+                data-testid="toDoTextInput" 
+                type="text"
+                placeholder="Enter todo text here:"/>
+          <button onclick="addTodoItem(event)" 
+                  data-testid="submitButton">add item</button>
+        </form>
+      </section>
+      <section>
+        <h2>Your current Todos:</h2>
+        <ul id="todo-list">
+        </ul>
+      </section>
+    </main>
 </body>
 </html>
