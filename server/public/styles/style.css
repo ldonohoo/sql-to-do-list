@@ -3,73 +3,179 @@
     Tier II- SQL todo List- BASE version 
 */
 
+
+/*------------------------------------------------------------*/
+/* import selected bootstrap moduless */
+/*------------------------------------------------------------*/
+
+ /* Custom.scss */
+/* // Option B: Include parts of Bootstrap */
+
+/* // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc) */
+@import "../node_modules/bootstrap/scss/functions";
+/* 
+// 2. Include any default variable overrides here */
+/* 
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets) */
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+/* 
+// 4. Include any default map overrides here */
+/* 
+// 5. Include remainder of required parts */
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+/* // 6. Optionally include any other parts as needed */
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/modals";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+/*  */
+/* // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss` */
+@import "../node_modules/bootstrap/scss/utilities/api";
+/* 
+// 8. Add additional custom code here */
+
+/*------------------------------------------------------------*/
+/* custom css below                                     */
+/*------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------*/
+/* global variables & colors                                 */
+/*------------------------------------------------------------*/
+:root {
+    --background-color1: rgb(228, 228, 228);
+    --background-color2: blanchedalmond;
+    --background-color3: rgb(176, 176, 176);
+}
+
+.background-color1 {
+    background-color: var(--background-color1);
+}
+
+.background-color2 {
+    background-color:var(--background-color2);
+}
+
+/*------------------------------------------------------------*/
+/* general css by element                                            */
+/*------------------------------------------------------------*/
+
 body {
     margin: 0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 header {
     background-color: rgb(163, 227, 255);
-    border-bottom: .1rem solid black;
-    border-top: .1rem solid black;
+    border-bottom: .5rem solid black;
+    border-top: .5rem solid black;
     text-align: center;
-    padding-top: .8rem;
+    min-height: 6rem;
+}
+
+h2 {
+    border-bottom: .1rem solid black;
 }
 
 main {
-    margin: 0 15%;
+    margin: 0 2%;
 }
 
-input {
-    height: 2rem;
-    min-width: 30rem;
-    border: .1rem solid black;
-    border-radius: .5rem;
+/*------------------------------------------------------------*/
+/* elements in grid for:   add todo item area                               */
+/*------------------------------------------------------------*/
+
+form {
+    display: grid;
+    grid-template-columns: auto 3rem;
 }
 
-ul {
-    vertical-align: text-bottom;
+textarea {
+    grid-column: 1/2;
+    grid-row: 1/3;
 }
 
-li {
-    list-style-type: none;
-    font-size: large;
-    bottom: 0;
-    background-color: rgb(255, 249, 200);
-    
+.add-btn {
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
 
-li:nth-child(ODD) {
-    background-color:rgb(213, 207, 163);
+.clear-btn {
+    grid-column: 2/3;
+    grid-row: 2/3;
 }
 
-button {
-    padding: .5rem;
-    margin: 0;
-    height: 2rem;
-    min-width: 2rem;
-    border: .1rem solid black;
-    border-radius: .5rem;
+/*------------------------------------------------------------*/
+/* elements in grid for:    todo list area                                   */
+/*------------------------------------------------------------*/
+
+#todo-item {
+    display: grid;
+    grid-template-columns: minmax(2.5rem, 5%)  
+                           minmax(2.5rem, 5%) 
+                           minmax(20rem, 80%)
+                           minmax(6rem, 10%);
 }
 
 #check-item-button {
-    height: 2rem;
-    min-width: 2rem;
-}
-
-#check-item-button.completed {
-    background-color: rgb(206, 255, 206);
-}
-
-#todo-item.completed {
-    color: rgb(49, 49, 49);
-    font-style: italic;
-    background-color: rgb(201, 201, 201);
-}
+    grid-column: 1/2;
+    min-width: 2.5rem;
+    height: inherit;
+    border: .01rem solid black;
+    border-radius: .5rem;
+    background-color: rgb(215, 215, 215);
+} 
 
 #delete-item-button {
-    position: absolute;
-    right: 10%;
-    background-color: rgb(252, 179, 179);
+    grid-column: 2/3;
 }
+
+#todo-text {
+    grid-column: 3/4;
+    border: .01rem solid black;
+    border-radius: 0.5rem;
+    padding: .5rem 0 .2rem 1rem;
+} 
+
+#completed-date {
+    grid-column: 4/5;
+    min-height: 2.5rem;
+    border: .01rem solid black;
+    border-radius: .5rem;
+    font-size: smaller;
+    text-align: center;
+} 
+
+/*------------------------------------------------------------*/
+/* further style bootstrap modal elements                     */
+/*------------------------------------------------------------*/
+
+button.close {
+    position: absolute;
+    border-radius: 0.5rem;
+    right: 1rem;
+    font-size: larger;
+}
+
+/*------------------------------------------------------------*/
+/* completed item class styles                                      */
+/*------------------------------------------------------------*/
+
+#todo-item.completed {
+    font-style: italic;
+    border-radius: 0.5rem;
+}  
+
+#todo-text.completed {
+    background-color: var(--background-color3);
+}
+
 

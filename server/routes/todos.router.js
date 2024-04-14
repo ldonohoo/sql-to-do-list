@@ -59,22 +59,28 @@ router.post('/', (req, res) => {
 });
 
 /**
- * PUT route for updating a todo item to mark it as completed
+ * PUT route for updating a todo item to toggle it's completed status
  *  - read in the todo id from the parameter passed in on the url
  *  - run an SQL UPDATE command to update the completed status for 
- *      the todo item to TRUE
+ *      the todo item to flip the status
  */
 router.put('/:todo_id', (req, res) => {
     let todoId = req.params.todo_id;
+    // boolean value to control creating timestamp
+    let createTimeStamp = req.body.createTimeStamp;
     console.log('updating todo #', todoId);
     // build SQL statement: 
-    //  **need to put isComplete column name in quotes because it got defined
-    //      in the database.sql as a column with a capital letter.
-    //      Capital letters can only be passed with quotes, bah. 
+    //     - toggle isComplete to false/true
+    //     - when we are completing an item (isComplete is false)
+    //           then set the completedAt to the current timestamp
     sqlText = `
         UPDATE todos
-            SET "isComplete" = TRUE
-            WHERE id = $1;
+        SET "isComplete" = NOT("isComplete"),
+            "completedAt" = CASE 
+                    WHEN "isComplete" = FALSE THEN CURRENT_TIMESTAMP
+                    WHEN "isComplete" = TRUE THEN NULL
+                    END
+        WHERE id = $1;
     `;
     console.log('sqlText:', sqlText);
     pool.query(sqlText, [todoId])
